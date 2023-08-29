@@ -2,9 +2,9 @@ package arrays
 
 import (
 	"bufio"
-	"container/heap"
 	"fmt"
 	"os"
+	"problems/pkg/heap"
 )
 
 type proc struct {
@@ -46,35 +46,15 @@ func (h *procHeap) getLessThan(t int) (res []int) {
 	return res
 }
 
-// An IntHeap is a min-heap of ints.
-type intHeap []int
-
-func (h intHeap) Len() int           { return len(h) }
-func (h intHeap) Less(i, j int) bool { return h[i] < h[j] }
-func (h intHeap) Swap(i, j int)      { h[i], h[j] = h[j], h[i] }
-
-func (h *intHeap) Push(x any) {
-	// Push and Pop use pointer receivers because they modify the slice's length,
-	// not just its contents.
-	*h = append(*h, x.(int))
-}
-
-func (h *intHeap) Pop() any {
-	old := *h
-	n := len(old)
-	x := old[n-1]
-	*h = old[0 : n-1]
-	return x
-}
-
 // Работает с stdin и stdout
+
 func task() {
 	inFile, _ := os.Open("input")
 	in := bufio.NewReader(inFile)
 
 	var n, m int
 	fmt.Fscanln(in, &n, &m)
-	free := make(intHeap, n)
+	free := make(heap.IntHeap, n)
 	for i := 0; i < n; i++ {
 		_, err := fmt.Fscan(in, &free[i])
 		if err != nil {
