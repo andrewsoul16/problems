@@ -47,6 +47,7 @@ func check(trips triplets, nums []int, i, j, k int) {
 	trips.push(t)
 }
 
+// todo доделать эту дичь
 func ThreeSum(nums []int) [][]int {
 	sort.Ints(nums)
 	var trips = newTriplets()
